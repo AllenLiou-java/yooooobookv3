@@ -506,12 +506,7 @@ export default {
 
       const idToken = Cookie.get('id_token')
 
-      return this.$api.apiList.order.patchOrderInfo(
-        uid,
-        orderId,
-        idToken,
-        updatedData
-      )
+      return this.$api.order.patchOrderInfo(uid, orderId, idToken, updatedData)
     },
     setOverlay(posIndex) {
       const trList = document.querySelectorAll('tbody tr')

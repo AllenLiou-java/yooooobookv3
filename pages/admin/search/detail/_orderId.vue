@@ -530,7 +530,7 @@ export default {
         this.orderInfo = orderDetail
       } else {
         // vuex的 state.orders 「無資料」時
-        this.$api.apiList.order
+        this.$api.order
           .getOrderInfo(uid, orderId, idToken)
           .then((res) => {
             const orderDetail = res.data
@@ -576,7 +576,7 @@ export default {
     patchOrder(uid, orderId, data) {
       const idToken = Cookie.get('id_token')
 
-      return this.$api.apiList.order
+      return this.$api.order
         .patchOrderInfo(uid, orderId, idToken, data)
         .then((item) => {
           this.orderInfo.isEdit = false

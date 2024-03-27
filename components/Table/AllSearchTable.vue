@@ -441,12 +441,7 @@ export default {
       const { isEdit, ...updatedData } = data
       const idToken = Cookie.get('id_token')
 
-      return this.$api.apiList.order.patchOrderInfo(
-        uid,
-        orderId,
-        idToken,
-        updatedData
-      )
+      return this.$api.order.patchOrderInfo(uid, orderId, idToken, updatedData)
     },
     openToast(title, content, variant) {
       this.toastSet.title = title

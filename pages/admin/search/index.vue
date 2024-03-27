@@ -32,9 +32,7 @@ export default {
 
       try {
         // 取得所有訂單資料
-        const ordersPromise = await context.$api.apiList.order.getAllOrders(
-          idToken
-        )
+        const ordersPromise = await context.$api.order.getAllOrders(idToken)
         data = ordersPromise.data
       } catch (e) {
         // 若token過期，更換token - 透過refresh_token獲取新token
@@ -54,7 +52,7 @@ export default {
         context.$cookies.set('refresh_token', exchangeRefreshToken)
 
         // 取得所有訂單資料
-        const ordersPromise = await context.$api.apiList.order.getAllOrders(
+        const ordersPromise = await context.$api.order.getAllOrders(
           exchangeIdToken
         )
         data = ordersPromise.data

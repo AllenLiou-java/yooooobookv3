@@ -222,7 +222,7 @@ export default {
     // const productId = context.app.router.currentRoute.params
     const productId = 'AA00001'
     try {
-      const { data } = await context.$api.apiList.stock.getStock(productId)
+      const { data } = await context.$api.stock.getStock(productId)
       if (data) {
         return { stock: data.qty }
       } else {
@@ -335,7 +335,7 @@ export default {
         // const productId = context.app.router.currentRoute.params
         const productId = 'AA00001'
         const orderQty = this.productInfo.qty
-        const stockPromise = await this.$api.apiList.stock.getStock(productId)
+        const stockPromise = await this.$api.stock.getStock(productId)
 
         if (stockPromise.data) {
           const stock = stockPromise.data.qty

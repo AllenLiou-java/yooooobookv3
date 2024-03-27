@@ -1,8 +1,8 @@
-import API from '~/utils/api'
+import API from '~/api/api.config'
 
-export default ($axios) => ({
+export default (axios) => ({
   getStock(productId) {
-    return $axios({
+    return axios({
       methods: API.stock.getStock.method,
       url: API.stock.getStock.url.replace(
         ':product_id.json',
@@ -11,7 +11,7 @@ export default ($axios) => ({
     })
   },
   patchStock(productId, qty, idToken) {
-    return $axios({
+    return axios({
       method: API.stock.patchStock.method,
       url:
         API.stock.patchStock.url.replace(

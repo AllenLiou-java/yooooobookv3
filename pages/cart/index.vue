@@ -243,7 +243,7 @@ export default {
       let stock
 
       try {
-        const { data } = await this.$api.apiList.stock.getStock(productId)
+        const { data } = await this.$api.stock.getStock(productId)
         stock = data.qty
       } catch (e) {
         throw new Error(e)
@@ -252,12 +252,7 @@ export default {
       if (stock >= qty) {
         try {
           await this.updateStock(productId, stock, qty, idToken)
-          await this.$api.apiList.order.patchOrderInfo(
-            uid,
-            orderId,
-            idToken,
-            orderInfo
-          )
+          await this.$api.order.patchOrderInfo(uid, orderId, idToken, orderInfo)
           // 訂單資訊存入vuex
           this.$store.commit('seUsertOrder', orderInfo)
           // 發送訂單確認信
@@ -370,7 +365,7 @@ export default {
       const updatedStock = stock - orderQty
       const data = { qty: updatedStock }
       try {
-        this.$api.apiList.stock.patchStock(productId, data, idToken)
+        this.$api.stock.patchStock(productId, data, idToken)
       } catch (e) {
         throw new Error(e)
       }

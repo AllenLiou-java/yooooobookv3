@@ -139,7 +139,7 @@ export default {
             this.updateLoginInfo(loginRes.data)
             this.$refs.loginModal.formDataReset()
             // this.$store.dispatch('getOrderList', loginRes.data)
-            this.$api.apiList.member
+            this.$api.member
               .getAuthList(loginRes.data.idToken)
               .then((res) => {
                 const authList = res.data
@@ -209,7 +209,7 @@ export default {
       }
     },
     updateLoginInfo(loginResData) {
-      this.$api.apiList.member
+      this.$api.member
         .getMemberInfo(loginResData)
         .then((usersRes) => {
           const _data = {
@@ -242,7 +242,7 @@ export default {
           const postData = {
             emailVerified,
           }
-          this.$api.apiList.member
+          this.$api.member
             .patchMemberInfo(localId, idToken, postData)
             .then((res) => {
               Cookie.set('emailVerified', emailVerified)

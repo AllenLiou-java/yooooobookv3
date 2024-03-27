@@ -1,41 +1,36 @@
-import apiList from '~/service/apiList'
+import { parseCookie } from '~/assets/js/tool'
 
-/* eslint-disable no-console */
-export default function ({ $axios, redirect, store }, inject) {
-  const apiModules = {}
-
-  // const api = $axios.create({
-  //   baseURL: process.env.API_URL,
-  // })
-
-  $axios.setBaseURL(process.env.API_URL)
-
+export default function ({ $axios, store, req }) {
   $axios.onRequest((config) => {
-    // console.log('Making request to ' + config.url)
-
     config.params = {
       key: process.env.FIREBASE_API_KEY,
     }
-    // console.log(config)
-
     return config
+  })
+
+  $axios.onResponse((response) => {
+    if (response.status === 200 && response) {
+      return response
+    }
   })
 
   $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status)
     const statusText = error.response.statusText
-    console.log(error.response)
-
+    // eslint-disable-next-line no-console
+    // console.log(error.response)
     if (code === 400) {
       // redirect("/400")
+      // eslint-disable-next-line no-console
       console.log('error', code)
     }
-
     if (code === 401 && statusText === 'Unauthorized') {
-      store.dispatch('exchangeToken')
+      if (process.server) {
+        const cookiesFromServer = parseCookie(req.headers.cookie)
+        store.dispatch('exchangeToken', cookiesFromServer.refresh_token)
+      } else {
+        store.dispatch('exchangeToken')
+      }
     }
   })
-
-  apiModules.apiList = apiList($axios)
-  inject('api', apiModules)
 }

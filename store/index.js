@@ -117,9 +117,7 @@ export const actions = {
 
       // 判斷是否擁有後臺權限
       try {
-        const promiseAuthList = await this.$api.apiList.member.getAuthList(
-          idToken
-        )
+        const promiseAuthList = await this.$api.member.getAuthList(idToken)
 
         const authList = promiseAuthList.data
         isAdministrator = authList[id_token_Decode.user_id] === true
@@ -167,7 +165,7 @@ export const actions = {
     }
     const data = { ..._data }
 
-    return this.$api.apiList.member
+    return this.$api.member
       .patchMemberInfo(uid, idToken, data)
       .then((res) => {
         commit('setOpenLoginModal', false)
@@ -181,7 +179,7 @@ export const actions = {
     const uid = payload.localId || Cookie.get('userUid')
     const idToken = payload.idToken
 
-    return this.$api.apiList.order
+    return this.$api.order
       .getOrderList(uid, idToken)
       .then((item) => {
         if (!item.data) return
@@ -198,7 +196,7 @@ export const actions = {
     const orderId = payload.orderId
     const uid = payload.uid
     const idToken = payload.idToken
-    return this.$api.apiList.order.getOrderInfo(uid, orderId, idToken)
+    return this.$api.order.getOrderInfo(uid, orderId, idToken)
   },
   exchangeToken({ state, commit }) {
     const refreshToken = Cookie.get('refresh_token')
