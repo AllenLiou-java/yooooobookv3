@@ -19,9 +19,9 @@
           <nuxt-link to="/file">檔案下載</nuxt-link>
         </li>
 
-        <li v-if="isAdministrator">
+        <!-- <li v-if="isAdministrator">
           <nuxt-link to="/admin/search?page=1">訂單管理</nuxt-link>
-        </li>
+        </li> -->
 
         <li v-if="eventType.event_en === 'login'">
           <button class="btnLogin-popup" @click="openModal(eventType.event_en)">

@@ -91,7 +91,6 @@
 <script>
 import Cookie from 'js-cookie'
 import Formatter from '@/components/Formatter.vue'
-// import API from '~/utils/api'
 
 export default {
   components: { Formatter },

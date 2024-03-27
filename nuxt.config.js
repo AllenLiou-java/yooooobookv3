@@ -218,15 +218,15 @@ export default {
     APP_ID,
   },
   loading: '~/components/LoadingBar.vue',
-  router: {
-    extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'admin-search-detail',
-        path: '/admin/search/detail/:uid/:orderId',
-        component: resolve(__dirname, 'pages/admin/search/detail/_orderId'),
-      })
-    },
-  },
+  // router: {
+  //   extendRoutes(routes, resolve) {
+  //     routes.push({
+  //       name: 'admin-search-detail',
+  //       path: '/admin/search/detail/:uid/:orderId',
+  //       component: resolve(__dirname, 'pages/admin/search/detail/_orderId'),
+  //     })
+  //   },
+  // },
 
   // 開始加入GA code
   'google-gtag': {

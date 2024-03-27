@@ -14,16 +14,16 @@ export default function (context) {
         return context.redirect('/')
       }
     }
-    if (
-      context.route.name === 'admin-search' ||
-      context.route.name === 'admin-search-detail-orderId'
-    ) {
-      const isAdministrator =
-        context.app.$cookies.get('isAdministrator') === 'true' || true
-      if (!isAdministrator) {
-        return context.redirect('/')
-      }
-    }
+    // if (
+    //   context.route.name === 'admin-search' ||
+    //   context.route.name === 'admin-search-detail-orderId'
+    // ) {
+    //   const isAdministrator =
+    //     context.app.$cookies.get('isAdministrator') === 'true' || true
+    //   if (!isAdministrator) {
+    //     return context.redirect('/')
+    //   }
+    // }
   }
   if (!context.store.state.isUserLoggedIn) {
     if (context.route.name === 'cart') {

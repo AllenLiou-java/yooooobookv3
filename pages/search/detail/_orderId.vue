@@ -228,7 +228,6 @@
 </template>
 
 <script>
-// import API from '~/utils/api'
 import { initOrderInfo } from '@/assets/js/initData'
 import Formatter from '~/components/Formatter.vue'
 
